@@ -26,6 +26,22 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!--2、部署applicationContext的xml文件-->
+    <!--如果在web.xml中不写任何参数配置信息，默认的路径是"/WEB-INF/applicationContext.xml，
+    在WEB-INF目录下创建的xml文件的名称必须是applicationContext.xml。
+    如果是要自定义文件名可以在web.xml里加入contextConfigLocation这个context参数：
+    在<param-value> </param-value>里指定相应的xml文件名，如果有多个xml文件，可以写在一起并以“,”号分隔。
+    也可以这样applicationContext-*.xml采用通配符，比如这那个目录下有applicationContext-ibatis-base.xml，
+    applicationContext-action.xml，applicationContext-ibatis-dao.xml等文件，都会一同被载入。
+    在ContextLoaderListener中关联了ContextLoader这个类，所以整个加载配置过程由ContextLoader来完成。-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring-mvc.xml</param-value>
+    </context-param>
+
 
     <!-- springmvc的前端控制器 -->
     <servlet>
